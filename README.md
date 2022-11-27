@@ -96,9 +96,9 @@ docker run -d --restart unless-stopped -p 6379:6379 redis:7.0-alpine
 
 ##### MQTT
 
-Currently, we need an MQTT broker running at localhost:1883/
+We need an MQTT broker running at localhost:1883/
 
-To achieve this, check [1950 MQTT setup](https://github.com/gntouts/1950/tree/feat_add_uart_relay/HomeAssistant/HostOS/mqtt). The link may be moved [here](https://github.com/gntouts/1950/tree/main/HomeAssistant/HostOS/mqtt) when the branches are merged.
+To achieve this, check [MQTT setup](redis.md).
 
 #### Config file
 
