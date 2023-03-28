@@ -9,12 +9,12 @@ import (
 	"time"
 
 	serial "github.com/albenik/go-serial/v2"
-	"github.com/gntouts/nt-cli/pkg/usbdev"
+	"github.com/gntouts/gomuq/pkg/usbtool"
 	"github.com/go-redis/redis/v8"
 )
 
 func findDevice(name string) (string, error) {
-	out, err := usbdev.SearchDevice(name)
+	out, err := usbtool.SearchDevice(name)
 	if err != nil {
 		return "", err
 	}

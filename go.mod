@@ -5,7 +5,6 @@ go 1.18
 require (
 	github.com/albenik/go-serial/v2 v2.5.1
 	github.com/eclipse/paho.mqtt.golang v1.4.2
-	github.com/gntouts/nt-cli v0.0.1
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/google/gousb v1.1.2
 	github.com/knadh/koanf v1.4.4
