@@ -1,6 +1,6 @@
-# Redis setup
+# MQTT setup
 
-We need to use a custom Redis image based on Ubuntu 22.04.
+We need to use a custom MQTT image based on Ubuntu 22.04.
 
 ## Dockerfile
 
