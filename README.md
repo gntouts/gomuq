@@ -98,7 +98,7 @@ docker run -d --restart unless-stopped -p 6379:6379 redis:7.0-alpine
 
 We need an MQTT broker running at localhost:1883/
 
-To achieve this, check [MQTT setup](redis.md).
+To achieve this, check [MQTT setup](mqtt.md).
 
 #### Config file
 
