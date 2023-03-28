@@ -14,7 +14,6 @@ var commands []*cli.Command = []*cli.Command{{
 	Aliases: []string{"r"},
 	Usage:   "resets the STM32 board that is currently connected",
 	Action: func(cCtx *cli.Context) error {
-		stlink.Reset()
 		return stlink.Reset()
 	},
 }, {

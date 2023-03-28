@@ -19,12 +19,9 @@ func checkDependencies() {
 
 func Reset() error {
 	checkDependencies()
-
-	var ret string
 	output, err := exec.Command("st-flash", "--reset", "read", "garbage.bin", "0x8000000", "256").CombinedOutput()
-	ret += string(output)
+	fmt.Print(string(output))
 	if err != nil {
-		fmt.Println(output)
 		fmt.Println(err.Error())
 		return err
 	}
@@ -35,21 +32,16 @@ func Reset() error {
 		fmt.Println(err.Error())
 		return err
 	}
-	fmt.Println(output)
 	return nil
 }
 
 func Flash(filename string) error {
 	checkDependencies()
-
-	var ret string
 	output, err := exec.Command("st-flash", "--reset", "write", filename, "0x8000000").CombinedOutput()
-	ret += string(output)
+	fmt.Print(string(output))
 	if err != nil {
-		fmt.Println(output)
 		fmt.Println(err.Error())
 		return err
 	}
-	fmt.Println(output)
 	return nil
 }
