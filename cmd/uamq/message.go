@@ -47,6 +47,13 @@ type Message struct {
 }
 
 func MessageFromString(input string) (Message, error) {
+	// 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+
+	Log.Info(input)
+	input = strings.TrimSpace(input)
+	// parts2 := strings.Split(input, ",")
+	// 5 boolean , 10integers ,10floats
+
 	var newMessage Message
 	m := make(map[string]string)
 	newMessage.data = m

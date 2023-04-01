@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"path/filepath"
 	"sync"
 
 	"github.com/knadh/koanf"
@@ -118,12 +117,12 @@ func (c *Cli) loadConfig() {
 func (c *Cli) start() {
 	c.loadConfig()
 	logPath := c.conf.log.target
-	err := makeLogDir(filepath.Base(logPath))
-	if err != nil {
-		fmt.Println(err.Error())
-		panic(err)
-	}
-	logFile, err = os.OpenFile(logPath, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0644)
+	// err := makeLogDir(filepath.Base(logPath))
+	// if err != nil {
+	// 	fmt.Println(err.Error())
+	// 	panic(err)
+	// }
+	logFile, err := os.OpenFile(logPath, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0644)
 	if err != nil {
 		panic(err)
 	}
