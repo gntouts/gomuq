@@ -66,7 +66,39 @@ func (m *UartMessage) parseInput() error {
 	}
 	return nil
 }
-func (m *UartMessage) Outgoing() string {
+func (m *UartMessage) Outgoing() [27]byte {
+	var ret [27]byte
+	for i := 0; i < 5; i++ {
+		var temp [8]bool
+		var num uint8
+		copy(temp[:], m.bools[i*8:i*8+8])
+		for i := 0; i < len(temp); i++ {
+			if temp[i] {
+				num |= 1 << uint(7-i)
+			}
+		}
+		ret[i] = num
+	}
+	for ind, num := range m.ints {
+		ret[5+ind] = num
+	}
+	for ind, num := range m.floats {
+		temp := fmt.Sprintf("%.2f", num)
+		parts := strings.Split(temp, ".")
+		// TODO: perhaps log the error(?)
+		first, _ := strconv.ParseUint(parts[0], 10, 8)
+		second, _ := strconv.ParseUint(parts[1], 10, 8)
+		ret[15+ind] = uint8(first)
+		ret[16+ind] = uint8(second)
+
+	}
+	ret[25] = 0x0A
+	ret[26] = 0x0D
+	return ret
+}
+
+// TODO: Delete (deprecated)
+func (m *UartMessage) Out() string {
 	result := ""
 	// convert booleans to integers
 	for i := 0; i < 5; i++ {

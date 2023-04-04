@@ -89,7 +89,7 @@ func waitForSingleMessage(conn serial.Port) string {
 
 func uartHandler(usbName string, baudRate int) {
 	var conn *serial.Port
-	defer conn.Close()
+	// defer conn.Close()
 	disconnected := true
 	c := make(chan os.Signal, 1)
 	signal.Notify(c, os.Interrupt)
@@ -131,11 +131,12 @@ func uartHandler(usbName string, baudRate int) {
 			// }
 
 			for {
-				if false {
+				if true {
 					msg := waitForSingleMessage(*conn)
 					if msg == "" {
 						disconnected = true
 						logrus.Error("Disconnected from UART device")
+						conn.Close()
 						break
 					}
 					parts := strings.Split(msg, ",")
@@ -146,15 +147,12 @@ func uartHandler(usbName string, baudRate int) {
 						fmt.Println(message.Outgoing())
 					}
 				}
-				if true {
+				if false {
 					message := common.NewMessageFromInput("3,2,1,0,1,2,3,0,0,0,0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,0.00,15.54,0.00,0.00,0.00")
 					ret := message.Outgoing()
-					parts := strings.Split(ret, ",")
 
-					fmt.Println("sending: ", ret, ", length: ", len(parts))
-					fmt.Println("nr")
 					time.Sleep(5 * time.Second)
-					_, err := conn.Write([]byte(ret + "\n\r"))
+					_, err := conn.Write(ret[:])
 					if err != nil {
 						fmt.Println(err.Error())
 					}
